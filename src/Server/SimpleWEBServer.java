@@ -53,16 +53,14 @@ class SimpleWEBServer extends Thread {
             new ParserData();
             
             request = new String(buf, 0, r);
+            System.out.println(request);
+            if(!request.contains("gameplay?")) {
+                os.write(request.getBytes());
+                os.close();
+                is.close();
+                return;
+            }
             
-            /*ParserData.massage.write("HTTP/1.1 200 OK\n" +
-            "Connection: open\n"
-                + "Server: SimpleWEBServer\n"
-                + "Pragma: no-cache\n"
-                + "Accept-Charset: UTF-8\n"
-                + "Content-Type: text/txt; charset=utf-8"
-                + "Accept-Language: ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7\n\n"
-                );
-            */
             String line = request.split("gameplay\\?")[1].split("[ \n]")[0];
             
             //System.out.println("??line" + line);
@@ -133,9 +131,11 @@ class SimpleWEBServer extends Thread {
                         break;
                 }
             }
+            ParserData.massage.write("</p>\n</body>\n</html>");
+            
             ParserData.massage.flush();
             
-            File f = new File(System.getProperty("user.dir") + "/massage.txt");
+            File f = new File(System.getProperty("user.dir") + "/massage.html");
             
             String response = "HTTP/1.1 200 OK\n";
 
@@ -145,7 +145,7 @@ class SimpleWEBServer extends Thread {
 
             response = response + "Last-Modified: " + df.format(new Date(f.lastModified())) + "\n";
             response = response + "Content-Length: " + f.length() + "\n";
-            response = response + "Content-Type: text//txt\n";
+            response = response + "Content-Type: text/html\n";
             response = response
             + "Connection: close\n"
             + "Accept-Charset: UTF-8\n"
@@ -155,7 +155,7 @@ class SimpleWEBServer extends Thread {
             os.write(response.getBytes());
 
             BufferedWriter bos = new BufferedWriter(new OutputStreamWriter(os));
-            BufferedReader fileReader = new BufferedReader(new FileReader(System.getProperty("user.dir") + "/massage.txt"));
+            BufferedReader fileReader = new BufferedReader(new FileReader(System.getProperty("user.dir") + "/massage.html"));
             while(fileReader.ready()) {
                 bos.write(fileReader.read());
             }
@@ -168,6 +168,7 @@ class SimpleWEBServer extends Thread {
                 if(r > 0) os.write(buf, 0, r);
             }*/
             fileReader.close();
+            //f.delete();
             bos.flush();
             os.close();
             is.close();

@@ -126,10 +126,10 @@ public class XmlFile implements ParserGame {
         for(String name: listNames)
             ParserData.pdata.println(name);
                 
-        ParserData.pdata.println("Start replay? " + Main.copyGet + "?replay='replay name'>\n" +
-                   "Delete replay? " + Main.copyDelete + "?replay='replay name'>\n" +
-                   "Clear all replays? " + Main.copyDelete + "?replay='deleteAll'>\n" +
-                   "Exit to menu? " + Main.copyGet + "main=menu>");
+        ParserData.pdata.println("Start replay? " + Main.copyGet + "replay='replay name'");
+        ParserData.pdata.println("Delete replay? " + Main.copyDelete + "replay='replay name'");
+        ParserData.pdata.println("Clear all replays? " + Main.copyDelete + "replay='deleteAll'");
+        ParserData.pdata.println("Exit to menu? " + Main.copyGet + "main=menu");
     }
     
     public void delete(String name) {
@@ -149,14 +149,14 @@ public class XmlFile implements ParserGame {
         }
         else 
             ParserData.pdata.println("Invalid replay name, please try again." +
-            Main.copyDelete + "?replay='replay name'>\n");
+            Main.copyDelete + "?replay='replay name'\n");
     }
     
     public void read(String name) {
         
         if(!listNames.contains(name)) {
             ParserData.pdata.println("Invalid replay name, please try again." +
-            Main.copyGet + "?replay='replay name'>\n");
+            Main.copyGet + "?replay='replay name'\n");
             return;
         } else
         

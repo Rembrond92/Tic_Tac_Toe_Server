@@ -16,7 +16,7 @@ public class RatingGame {
         ParserData.pdata.println("Player Rating:");
         
         for(Player person: list)
-            ParserData.pdata.print(createStatistics(person));
+            ParserData.pdata.println(createStatistics(person));
         
         ParserData.pdata.println("***");
     }
@@ -88,6 +88,6 @@ public class RatingGame {
         return "Name-" + person.getName()
            + "; Victories-" + person.getVictories()
            + "; Defeats-" + person.getDefeats()
-           + "; Draws-" + person.getDraws() + "\n";
+           + "; Draws-" + person.getDraws();
     }
 }
