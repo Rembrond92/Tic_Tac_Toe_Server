@@ -19,6 +19,7 @@ public class Main {
                 
             ParserData.pdata.println("Welcome to the game Tic-Tac-Toe!");
             RatingGame.readFile();
+            parser.readNames();
             menu();
     }
 

@@ -100,27 +100,34 @@ class SimpleWEBServer extends Thread {
                         case "start":
                             Game.start();
                             break;
+                        default:
+                            Main.main();
+                            break;
                     }
                 } else if(key.equals("replay"))
                             Main.parser.read(value);
-                
+                  else 
+                        Main.main();
+                            
             } else 
             if(request.startsWith("DELETE")) {
                 if(key.equals("rating")) {
-                    if(value.equals("resetAll"))
+                    if(value.equals("resetAll")) {
                         RatingGame.reset();
-                    else
+                    }else {
                         RatingGame.deletePlayer(value);
-                } 
+                    } 
+                }
                 else if(key.equals("replay"))
                             Main.parser.delete(value);
-           
+                else Main.main();
+                     
             } else 
             if(request.startsWith("PUT")) {
                 switch (key) {
                     case "playerOne":
                         String nameOne = value.split("&")[0];
-                        String nameTwo = line.split("=")[3];
+                        String nameTwo = line.split("=")[2];
                         Game.login(nameOne, nameTwo);
                         break;
                     case "moveOne":
@@ -128,6 +135,9 @@ class SimpleWEBServer extends Thread {
                         break;
                     case "moveTwo":
                         Game.move(Game.playerTwo, value);
+                        break;
+                    default:
+                        Main.main();
                         break;
                 }
             }
@@ -160,15 +170,7 @@ class SimpleWEBServer extends Thread {
                 bos.write(fileReader.read());
             }
 
-           /* FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "/massage.txt");
-            r = 1;
-            while(r > 0)
-            {
-                r = fis.read(buf);
-                if(r > 0) os.write(buf, 0, r);
-            }*/
             fileReader.close();
-            //f.delete();
             bos.flush();
             os.close();
             is.close();

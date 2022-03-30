@@ -76,8 +76,8 @@ public class Game {
         showMap();
                 
         ParserData.pdata.println("First player - " +
-            playerOne.getName() + " makes a move." +
-            Main.copyPut + "moveOne='free cell number'");
+            playerOne.getName() + " makes a move.");
+        ParserData.pdata.println(Main.copyPut + "moveOne='free cell number'");
     }
     
     public static void move(Player player, String value) {
@@ -104,13 +104,14 @@ public class Game {
         if(end) {
             gameResult(player);
         } else {
-            if(player.getID() == 1)
+            if(player.getID() == 1) {
                 ParserData.pdata.println("Second player - " +
-                playerTwo.getName() + " makes a move." +
-                Main.copyPut + "moveTwo='free cell number'");
-            else ParserData.pdata.println("First player - " +
-                playerOne.getName() + " makes a move." +
-                Main.copyPut + "moveOne='free cell number'");
+                    playerTwo.getName() + " makes a move.");
+                ParserData.pdata.println(Main.copyPut + "moveTwo='free cell number'");
+            }else {ParserData.pdata.println("First player - " +
+                    playerOne.getName() + " makes a move.");
+                ParserData.pdata.println(Main.copyPut + "moveOne='free cell number'");
+            }
         }
     }
     

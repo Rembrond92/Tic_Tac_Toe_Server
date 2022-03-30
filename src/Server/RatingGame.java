@@ -88,6 +88,6 @@ public class RatingGame {
         return "Name-" + person.getName()
            + "; Victories-" + person.getVictories()
            + "; Defeats-" + person.getDefeats()
-           + "; Draws-" + person.getDraws();
+           + "; Draws-" + person.getDraws() + "\n";
     }
 }
